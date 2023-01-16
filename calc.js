@@ -1,25 +1,26 @@
 const express = require("express");
-const bodyparser = require("body-parser")
+const bodyparser = require("body-parser");
 
 const app = express();
 
-app.use(bodyparser.urlencoded({extended: true}));
+app.use(bodyparser.urlencoded({extended : true}));
 app.get("/",function(req,res){
-    res.sendFile(__dirname + "/index.html");
+
+    res.sendFile(__dirname + "/find.html");
 });
-
-
-
 app.post("/",function(req,res){
 
-    var num1 =Number( req.body.num1);
+    var num1=Number(req.body.num1);
     var num2 = Number(req.body.num2);
+    var num3= num2/100;
+    var result = num1/(num3*num3);
 
-    var result = num1 + num2;
+    res.send("the bmi is"+result);
+})
 
-    res.send("the result"+result);
-});
+
+
 
 app.listen(8000,function(){
-    console.log("server run @ 3000");
+    console.log("server connected successfully @ 3000");
 });
